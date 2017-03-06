@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/task
+       http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <!-- 自动扫描task包下的所有类 -->
+    <context:component-scan base-package="com.zxk175.ssm.task"/>
+
+    <!-- 启用注解驱动的定时任务 -->
+    <task:scheduler id="scheduler" pool-size="5"/>
+
+    <!-- 配置定时任务的线程池 -->
+    <!-- 推荐配置线程池，若不配置多任务下会有问题 -->
+    <task:annotation-driven scheduler="scheduler"/>
+
+    <!-- 定义任务类 -->
+    <bean id="xmlTask" class="com.zxk175.ssm.task.XmlTask"/>
+
+    <!-- 开启任务调度 -->
+    <task:scheduled-tasks>
+        <!-- 每隔5秒执行一次 -->
+        <task:scheduled ref="xmlTask" method="show" cron="*/5 * * * * ?"/>
+    </task:scheduled-tasks>
+
+    <!-- 定时任务：要求所有的定时任务在spring启动之后跟着启动 -->
+    <bean id="quartzPostProcessor" init-method="autoLoadTask" class="com.zxk175.ssm.util.quartz.QuartzExecute"/>
+</beans>
