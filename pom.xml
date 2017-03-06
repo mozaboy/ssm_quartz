@@ -47,6 +47,8 @@
         <commons-io.version>2.4</commons-io.version>
         <commons-fileupload.version>1.2.2</commons-fileupload.version>
         <!--maven plugin-->
+        <maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
+        <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
         <maven-war-plugin.version>2.4</maven-war-plugin.version>
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
         <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
@@ -305,11 +307,30 @@
     <build>
         <finalName>${project.artifactId}_${project.version}_${maven.build.timestamp}</finalName>
         <plugins>
+            <!-- clean插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${maven-clean-plugin.version}</version>
+            </plugin>
+
+            <!-- install插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>${maven-install-plugin.version}</version>
+            </plugin>
+
             <!-- 资源文件编码处理 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>${maven-resources-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                    </execution>
+                </executions>
                 <configuration>
                     <encoding>${encoding.charset}</encoding>
                 </configuration>
@@ -357,6 +378,9 @@
                     <source>${jdk.version}</source>
                     <target>${jdk.version}</target>
                     <encoding>${encoding.charset}</encoding>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
 
