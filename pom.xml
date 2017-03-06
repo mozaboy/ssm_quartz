@@ -297,7 +297,7 @@
     </dependencies>
 
     <build>
-        <finalName>ssm</finalName>
+        <finalName>${project.artifactId}_${project.version}_${maven.build.timestamp}</finalName>
         <plugins>
             <!-- 资源文件编码处理 -->
             <plugin>
