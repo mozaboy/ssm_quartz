@@ -22,7 +22,7 @@ public class QuartzExecute {
         // 是否禁用:0禁用;1启用
         criteria.andEnableStatusEqualTo("1");
         // 任务状态:0关闭;1运行中;2暂停
-        //criteria.andTriggerStatusEqualTo(null);
+        // criteria.andTriggerStatusEqualTo(null);
         List<TQuartz> quartzList = quartzService.getQuartzList(example);
 
         if (null == quartzList) {

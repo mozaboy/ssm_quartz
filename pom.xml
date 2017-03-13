@@ -27,7 +27,8 @@
         <mysql-connector.version>5.1.34</mysql-connector.version>
         <druid.version>1.0.26</druid.version>
         <slf4j.version>1.7.21</slf4j.version>
-        <log4j2.version>2.6.2</log4j2.version>
+        <log4j2.version>2.4.1</log4j2.version>
+        <log4j2.async.version>3.2.0</log4j2.async.version>
         <jstl-api.version>1.2</jstl-api.version>
         <servlet-api.version>3.1.0</servlet-api.version>
         <javaee-api.version>7.0</javaee-api.version>
@@ -178,6 +179,19 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>${log4j2.version}</version>
+        </dependency>
+        <!-- web工程需要包含log4j-web，非web工程不需要 -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-web</artifactId>
+            <version>${log4j2.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- 需要使用log4j2的asynclogger需要包含disruptor -->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>${log4j2.async.version}</version>
         </dependency>
         <!-- 添加日志相关jar包 end -->
 

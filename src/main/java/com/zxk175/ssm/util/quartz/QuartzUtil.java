@@ -19,7 +19,7 @@ public class QuartzUtil {
      * @param clazz   任务
      * @param cron    时间设置，参考quartz说明文档
      */
-    public static void addJob(String jobName, Class clazz, String cron) {
+    public static void addJob(String jobName, Class<? extends Job> clazz, String cron) {
         try {
             Scheduler scheduler = schedulerFactory.getScheduler();
             // 任务名，任务组，任务执行类
