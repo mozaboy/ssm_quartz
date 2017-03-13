@@ -214,7 +214,7 @@
                         } else if (data == 1) {
                             return "<span style='color: #17c455'>运行中</span>";
                         } else {
-                            return "<span style='color: #ff0'>暂停</span>";
+                            return "<span style='color: #f0ad4e'>暂停</span>";
                         }
                     }
                 },
@@ -235,8 +235,10 @@
                         return "<div class='btn-group'>" +
                                 "<button id='btn_edit' onclick='edit()' type='button' class='btn btn-info btn-sm' data-target='#addAndEdit' data-toggle='modal' data-id='" + data + "'>修改</button>" +
                                 "<button id='btn_del' type='button' class='btn btn-danger btn-sm'>删除</button>" +
-                                "<button id='btn_pause' onclick='pause(this)' type='button' class='btn btn-danger btn-sm' data-json='" + JSON.stringify(full) + "'>暂停</button>" +
-                                "<button id='btn_pause' onclick='resume(this)' type='button' class='btn btn-danger btn-sm' data-json='" + JSON.stringify(full) + "'>恢复</button>" +
+                                "<button id='btn_pause' onclick='pause(this)' type='button' class='btn btn-warning btn-sm' data-json='" + JSON.stringify(full) + "' " +
+                                ">暂停</button>" +
+                                "<button id='btn_pause' onclick='resume(this)' type='button' class='btn btn-success btn-sm' data-json='" + JSON.stringify(full) + "'" +
+                                ">恢复</button>" +
                                 "</div>"
                     }
                 }
