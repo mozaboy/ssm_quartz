@@ -227,7 +227,7 @@
                     // 表示具体需要操作的目标列，下标从0开始
                     "targets": [12],
                     // 表示我们需要的某一列数据对应的属性名
-                    "data": "id",
+                    "data": "jobId",
                     // data， 之前属性定义中对应的属性值
                     // type， 未知
                     // full,    全部数据值可以通过属性列名获取
@@ -235,6 +235,8 @@
                         return "<div class='btn-group'>" +
                                 "<button id='btn_edit' onclick='edit()' type='button' class='btn btn-info btn-sm' data-target='#addAndEdit' data-toggle='modal' data-id='" + data + "'>修改</button>" +
                                 "<button id='btn_del' type='button' class='btn btn-danger btn-sm'>删除</button>" +
+                                "<button id='btn_pause' onclick='pause(this)' type='button' class='btn btn-danger btn-sm' data-json='" + JSON.stringify(full) + "'>暂停</button>" +
+                                "<button id='btn_pause' onclick='resume(this)' type='button' class='btn btn-danger btn-sm' data-json='" + JSON.stringify(full) + "'>恢复</button>" +
                                 "</div>"
                     }
                 }
@@ -267,59 +269,29 @@
             }
         });
     });
+
+    //重绘表格方法
+    function drawTable() {
+        table.DataTable().draw(true);
+    }
+
     //修改按钮点击事件
     $("#btn_edit").on("click", function () {
         $('#addAndEditLabel').text("修改用户信息");
         $('#txt_type').val("add");
     });
 
-    //清除弹窗原数据
-    $("#addAndEdit").on("show.bs.modal", function () {
-        $('#txt_name').val("");
-        $('#txt_pwd').val("");
-        $('#txt_email').val("");
-        $('#txt_phone').val("");
-        document.getElementById('p_man').checked = true;
-    });
 
-    //弹框保存按钮点击事件
-    $('#btn_add_and_edit_submit').off().on('click', function () {
-        var id = $('#txt_id').val(),
-w
-
-        //验证数据
-        if (!name) {
-            layer.msg('请填写名称!', {icon: 2, time: 1500});
-            return false;
-        }
-        if (!pwd) {
-            layer.msg('请填写密码!', {icon: 2, time: 1500});
-            return false;
-        }
-        if (!email) {
-            layer.msg('请填写邮箱!', {icon: 2, time: 1500});
-            return false;
-        }
-        if (!phone) {
-            layer.msg('请填写手机!', {icon: 2, time: 1500});
-            return false;
-        }
-
-        var userInfo = {
-            id: id,
-            userName: name,
-            userSex: sex,
-            userPwd: pwd,
-            userEmail: email,
-            userPhone: phone
-        }
-
+    //暂停按钮点击事件
+    function pause(obj) {
+        var json = $(obj).attr("data-json");
+        var data = JSON.parse(json);
         $.ajax({
-            url: ctx + '/user/add',
+            url: ctx + '/task/pause/' + data.jobId,
             type: 'post',
-            contentType: 'application/json;charset=utf-8',
             dataType: 'json',
-            data: JSON.stringify(userInfo),
+            contentType: 'application/json;charset=utf-8',
+            data: json,
             success: function (msg) {
                 if (msg.code == 500) {
                     layer.open({
@@ -337,10 +309,51 @@ w
                 } else {
                     layer.msg(msg.message, {icon: 2, time: 1500});
                 }
-                //重新绘制表格
-                table.DataTable().draw(false);
+                drawTable();
             }
         })
+    }
+
+    //恢复按钮点击事件
+    function resume(obj) {
+        var json = $(obj).attr("data-json");
+        var data = JSON.parse(json);
+        $.ajax({
+            url: ctx + '/task/resume/' + data.jobId,
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json;charset=utf-8',
+            data: json,
+            success: function (msg) {
+                if (msg.code == 500) {
+                    layer.open({
+                        type: 1,
+                        title: "异常信息",
+                        skin: 'layui-layer-rim', //加上边框
+                        area: ['1200px', '540px'], //宽高
+                        shade: 0.3,
+                        shadeClose: true,
+                        content: "异常类型：<br/>" + msg.exType +
+                        "异常详细信息：<br/>" + msg.exMsg
+                    });
+                } else if (msg.code == 200) {
+                    layer.msg(msg.message, {icon: 1, time: 1500});
+                } else {
+                    layer.msg(msg.message, {icon: 2, time: 1500});
+                }
+                drawTable();
+            }
+        })
+    }
+
+
+    //清除弹窗原数据
+    $("#addAndEdit").on("show.bs.modal", function () {
+        $('#txt_name').val("");
+        $('#txt_pwd').val("");
+        $('#txt_email').val("");
+        $('#txt_phone').val("");
+        document.getElementById('p_man').checked = true;
     });
 </script>
 </body>

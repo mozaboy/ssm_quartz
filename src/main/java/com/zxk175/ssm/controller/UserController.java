@@ -58,7 +58,7 @@ public class UserController extends BaseController {
         if (insert > 0) {
             responseVo = new ResponseVo(200, "插入成功！");
         } else {
-            responseVo = new ResponseVo(200, "插入失败！");
+            responseVo = new ResponseVo(500, "插入失败！");
         }
         return responseVo;
     }
@@ -80,7 +80,7 @@ public class UserController extends BaseController {
         if (delete > 0) {
             responseVo = new ResponseVo(200, "删除成功！");
         } else {
-            responseVo = new ResponseVo(200, "删除失败！");
+            responseVo = new ResponseVo(500, "删除失败！");
         }
         return responseVo;
     }
@@ -105,7 +105,7 @@ public class UserController extends BaseController {
         if (update > 0) {
             responseVo = new ResponseVo(200, "修改成功！");
         } else {
-            responseVo = new ResponseVo(200, "修改失败！");
+            responseVo = new ResponseVo(500, "修改失败！");
         }
         return responseVo;
     }

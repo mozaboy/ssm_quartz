@@ -2,6 +2,7 @@ package com.zxk175.ssm.service;
 
 import com.zxk175.ssm.pojo.TQuartz;
 import com.zxk175.ssm.pojo.TQuartzExample;
+import org.quartz.SchedulerException;
 
 import java.util.List;
 
@@ -10,4 +11,8 @@ import java.util.List;
  */
 public interface TQuartzService {
     List<TQuartz> getQuartzList(TQuartzExample example);
+
+    int pauseJob(TQuartz quartz) throws SchedulerException;
+
+    int resumeJob(TQuartz quartz) throws SchedulerException;
 }

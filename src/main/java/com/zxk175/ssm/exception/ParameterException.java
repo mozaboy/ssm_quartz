@@ -4,6 +4,7 @@ package com.zxk175.ssm.exception;
  * Created by zxk175 on 2017/2/20.
  */
 public class ParameterException extends RuntimeException {
+
     public ParameterException() {
         super();
     }

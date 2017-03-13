@@ -3,6 +3,7 @@ package com.zxk175.ssm.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zxk175.ssm.dto.DataTablePage;
+import com.zxk175.ssm.dto.ResponseVo;
 import com.zxk175.ssm.pojo.TQuartz;
 import com.zxk175.ssm.pojo.TQuartzExample;
 import com.zxk175.ssm.service.TQuartzService;
@@ -15,9 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.annotation.Resource;
@@ -108,4 +107,49 @@ public class QuartzController extends BaseController {
 
         return page;
     }
+
+    /**
+     * 暂停任务
+     *
+     * @param jobId
+     * @throws Exception
+     */
+    @ResponseBody
+    @RequestMapping(value = "/pause/{jobId}", method = RequestMethod.POST)
+    public ResponseVo pauseJob(@RequestBody TQuartz quartz, @PathVariable String jobId) throws Exception {
+        quartz.setJobId(jobId);
+        quartz.setTriggerStatus("2");
+        int pauseJob = quartzService.pauseJob(quartz);
+
+        ResponseVo responseVo = null;
+        if (pauseJob > 0) {
+            responseVo = new ResponseVo(200, "暂停成功！");
+        } else {
+            responseVo = new ResponseVo(500, "暂停失败！");
+        }
+        return responseVo;
+    }
+
+    /**
+     * 恢复任务
+     *
+     * @param jobId
+     * @throws Exception
+     */
+    @ResponseBody
+    @RequestMapping(value = "/resume/{jobId}", method = RequestMethod.POST)
+    public ResponseVo resumeJob(@RequestBody TQuartz quartz, @PathVariable String jobId) throws Exception {
+        quartz.setJobId(jobId);
+        quartz.setTriggerStatus("1");
+        int resumeJob = quartzService.resumeJob(quartz);
+
+        ResponseVo responseVo = null;
+        if (resumeJob > 0) {
+            responseVo = new ResponseVo(200, "恢复成功！");
+        } else {
+            responseVo = new ResponseVo(500, "恢复失败！");
+        }
+        return responseVo;
+    }
+
 }

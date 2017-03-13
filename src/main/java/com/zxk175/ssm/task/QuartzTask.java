@@ -48,7 +48,6 @@ public class QuartzTask implements JobFactory {
         }
     }
 
-    @Override
     public void interrupt() throws UnableToInterruptJobException {
         System.out.println("【关闭】interrupt执行立刻停止:test定时发送...");
         interrupted = true;
