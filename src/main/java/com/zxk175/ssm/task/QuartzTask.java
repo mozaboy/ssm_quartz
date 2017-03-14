@@ -1,7 +1,7 @@
 package com.zxk175.ssm.task;
 
 import com.zxk175.ssm.pojo.TUser;
-import com.zxk175.ssm.pojo.TUserExample;
+import com.zxk175.ssm.pojo.TUserCriteria;
 import com.zxk175.ssm.quartz.JobFactory;
 import com.zxk175.ssm.service.TUserService;
 import org.quartz.JobExecutionContext;
@@ -33,7 +33,7 @@ public class QuartzTask implements JobFactory {
         }
 
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        TUserExample example = new TUserExample();
+        TUserCriteria example = new TUserCriteria();
         List<TUser> users = userService.getAllUserByExample(example);
         int size = users.size();
         if (null != users && size > 0) {

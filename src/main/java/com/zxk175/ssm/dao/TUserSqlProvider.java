@@ -14,15 +14,15 @@ import static org.apache.ibatis.jdbc.SqlBuilder.VALUES;
 import static org.apache.ibatis.jdbc.SqlBuilder.WHERE;
 
 import com.zxk175.ssm.pojo.TUser;
-import com.zxk175.ssm.pojo.TUserExample.Criteria;
-import com.zxk175.ssm.pojo.TUserExample.Criterion;
-import com.zxk175.ssm.pojo.TUserExample;
+import com.zxk175.ssm.pojo.TUserCriteria.Criteria;
+import com.zxk175.ssm.pojo.TUserCriteria.Criterion;
+import com.zxk175.ssm.pojo.TUserCriteria;
 import java.util.List;
 import java.util.Map;
 
 public class TUserSqlProvider {
 
-    public String countByExample(TUserExample example) {
+    public String countByExample(TUserCriteria example) {
         BEGIN();
         SELECT("count(*)");
         FROM("t_user");
@@ -30,7 +30,7 @@ public class TUserSqlProvider {
         return SQL();
     }
 
-    public String deleteByExample(TUserExample example) {
+    public String deleteByExample(TUserCriteria example) {
         BEGIN();
         DELETE_FROM("t_user");
         applyWhere(example, false);
@@ -80,7 +80,7 @@ public class TUserSqlProvider {
         return SQL();
     }
 
-    public String selectByExample(TUserExample example) {
+    public String selectByExample(TUserCriteria example) {
         BEGIN();
         if (example != null && example.isDistinct()) {
             SELECT_DISTINCT("id");
@@ -107,7 +107,7 @@ public class TUserSqlProvider {
 
     public String updateByExampleSelective(Map<String, Object> parameter) {
         TUser record = (TUser) parameter.get("record");
-        TUserExample example = (TUserExample) parameter.get("example");
+        TUserCriteria example = (TUserCriteria) parameter.get("example");
         
         BEGIN();
         UPDATE("t_user");
@@ -166,7 +166,7 @@ public class TUserSqlProvider {
         SET("modify_time = #{record.modifyTime,jdbcType=TIMESTAMP}");
         SET("is_delete = #{record.state,jdbcType=TINYINT}");
         
-        TUserExample example = (TUserExample) parameter.get("example");
+        TUserCriteria example = (TUserCriteria) parameter.get("example");
         applyWhere(example, true);
         return SQL();
     }
@@ -212,7 +212,7 @@ public class TUserSqlProvider {
         return SQL();
     }
 
-    protected void applyWhere(TUserExample example, boolean includeExamplePhrase) {
+    protected void applyWhere(TUserCriteria example, boolean includeExamplePhrase) {
         if (example == null) {
             return;
         }

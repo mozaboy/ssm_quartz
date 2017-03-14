@@ -24,11 +24,11 @@
     <properties>
         <property name="LOG_HOME">/logs</property>
         <property name="file_name">app.log</property>
-        <property name="rolling_file_trace">{LOG_HOME}/trace/%d{yyyy-MM-dd}/app-%d{yyyy-MM-dd}-%i.log.gz</property>
-        <property name="rolling_file_debug">{LOG_HOME}/debug/%d{yyyy-MM-dd}/app-%d{yyyy-MM-dd}-%i.log.gz</property>
-        <property name="rolling_file_info">{LOG_HOME}/info/%d{yyyy-MM-dd}/app-%d{yyyy-MM-dd}-%i.log.gz</property>
-        <property name="rolling_file_warn">{LOG_HOME}/warn/%d{yyyy-MM-dd}/app-%d{yyyy-MM-dd}-%i.log.gz</property>
-        <property name="rolling_file_error">{LOG_HOME}/error/%d{yyyy-MM-dd}/app-%d{yyyy-MM-dd}-%i.log.gz</property>
+        <property name="rolling_file_trace">${LOG_HOME}/trace/%d{yyyy-MM-dd}/app-%d{yyyy-MM-dd}-%i.log.gz</property>
+        <property name="rolling_file_debug">${LOG_HOME}/debug/%d{yyyy-MM-dd}/app-%d{yyyy-MM-dd}-%i.log.gz</property>
+        <property name="rolling_file_info">${LOG_HOME}/info/%d{yyyy-MM-dd}/app-%d{yyyy-MM-dd}-%i.log.gz</property>
+        <property name="rolling_file_warn">${LOG_HOME}/warn/%d{yyyy-MM-dd}/app-%d{yyyy-MM-dd}-%i.log.gz</property>
+        <property name="rolling_file_error">${LOG_HOME}/error/%d{yyyy-MM-dd}/app-%d{yyyy-MM-dd}-%i.log.gz</property>
         <property name="output_log_pattern">%-5level %d{yyyy-MM-dd HH:mm:ss z} %class{36} %L %M - %msg%xEx%n</property>
         <!-- 日志切割的最小单位 -->
         <property name="every_file_size">5MB</property>

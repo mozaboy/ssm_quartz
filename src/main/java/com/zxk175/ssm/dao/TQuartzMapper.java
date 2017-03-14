@@ -1,7 +1,7 @@
 package com.zxk175.ssm.dao;
 
 import com.zxk175.ssm.pojo.TQuartz;
-import com.zxk175.ssm.pojo.TQuartzExample;
+import com.zxk175.ssm.pojo.TQuartzCriteria;
 import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.Arg;
@@ -19,10 +19,10 @@ import org.apache.ibatis.type.JdbcType;
 
 public interface TQuartzMapper {
     @SelectProvider(type=TQuartzSqlProvider.class, method="countByExample")
-    int countByExample(TQuartzExample example);
+    int countByExample(TQuartzCriteria example);
 
     @DeleteProvider(type=TQuartzSqlProvider.class, method="deleteByExample")
-    int deleteByExample(TQuartzExample example);
+    int deleteByExample(TQuartzCriteria example);
 
     @Delete({
         "delete from t_quartz",
@@ -64,7 +64,7 @@ public interface TQuartzMapper {
         @Arg(column="update_time", javaType=Date.class, jdbcType=JdbcType.TIMESTAMP),
         @Arg(column="desc_ript", javaType=String.class, jdbcType=JdbcType.VARCHAR)
     })
-    List<TQuartz> selectByExample(TQuartzExample example);
+    List<TQuartz> selectByExample(TQuartzCriteria example);
 
     @Select({
         "select",
@@ -90,10 +90,10 @@ public interface TQuartzMapper {
     TQuartz selectByPrimaryKey(String jobId);
 
     @UpdateProvider(type=TQuartzSqlProvider.class, method="updateByExampleSelective")
-    int updateByExampleSelective(@Param("record") TQuartz record, @Param("example") TQuartzExample example);
+    int updateByExampleSelective(@Param("record") TQuartz record, @Param("example") TQuartzCriteria example);
 
     @UpdateProvider(type=TQuartzSqlProvider.class, method="updateByExample")
-    int updateByExample(@Param("record") TQuartz record, @Param("example") TQuartzExample example);
+    int updateByExample(@Param("record") TQuartz record, @Param("example") TQuartzCriteria example);
 
     @UpdateProvider(type=TQuartzSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(TQuartz record);

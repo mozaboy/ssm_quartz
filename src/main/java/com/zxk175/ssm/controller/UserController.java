@@ -6,7 +6,7 @@ import com.github.pagehelper.StringUtil;
 import com.zxk175.ssm.dto.DataTablePage;
 import com.zxk175.ssm.dto.ResponseVo;
 import com.zxk175.ssm.pojo.TUser;
-import com.zxk175.ssm.pojo.TUserExample;
+import com.zxk175.ssm.pojo.TUserCriteria;
 import com.zxk175.ssm.service.TUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -167,8 +167,8 @@ public class UserController extends BaseController {
         PageHelper.startPage((start / length + 1), length);
 
         //查询条件
-        TUserExample example = new TUserExample();
-        TUserExample.Criteria criteria = example.createCriteria();
+        TUserCriteria example = new TUserCriteria();
+        TUserCriteria.Criteria criteria = example.createCriteria();
 
         if (StringUtil.isNotEmpty(userName)) {
             criteria.andUserNameLike(addPercent(userName));

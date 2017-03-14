@@ -2,7 +2,7 @@ package com.zxk175.ssm.service.impl;
 
 import com.zxk175.ssm.dao.TUserMapper;
 import com.zxk175.ssm.pojo.TUser;
-import com.zxk175.ssm.pojo.TUserExample;
+import com.zxk175.ssm.pojo.TUserCriteria;
 import com.zxk175.ssm.service.TUserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +38,7 @@ public class TUserServiceImpl implements TUserService {
     }
 
     @Override
-    public List<TUser> getAllUserByExample(TUserExample example) {
-        return userDao.selectByExample(example);
+    public List<TUser> getAllUserByExample(TUserCriteria criteria) {
+        return userDao.selectByExample(criteria);
     }
 }

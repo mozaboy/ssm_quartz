@@ -1,7 +1,7 @@
 package com.zxk175.ssm.dao;
 
 import com.zxk175.ssm.pojo.TUser;
-import com.zxk175.ssm.pojo.TUserExample;
+import com.zxk175.ssm.pojo.TUserCriteria;
 import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.Arg;
@@ -19,10 +19,10 @@ import org.apache.ibatis.type.JdbcType;
 
 public interface TUserMapper {
     @SelectProvider(type=TUserSqlProvider.class, method="countByExample")
-    int countByExample(TUserExample example);
+    int countByExample(TUserCriteria example);
 
     @DeleteProvider(type=TUserSqlProvider.class, method="deleteByExample")
-    int deleteByExample(TUserExample example);
+    int deleteByExample(TUserCriteria example);
 
     @Delete({
         "delete from t_user",
@@ -59,7 +59,7 @@ public interface TUserMapper {
         @Arg(column="modify_time", javaType=Date.class, jdbcType=JdbcType.TIMESTAMP),
         @Arg(column="is_delete", javaType=Short.class, jdbcType=JdbcType.TINYINT)
     })
-    List<TUser> selectByExample(TUserExample example);
+    List<TUser> selectByExample(TUserCriteria example);
 
     @Select({
         "select",
@@ -82,10 +82,10 @@ public interface TUserMapper {
     TUser selectByPrimaryKey(Long id);
 
     @UpdateProvider(type=TUserSqlProvider.class, method="updateByExampleSelective")
-    int updateByExampleSelective(@Param("record") TUser record, @Param("example") TUserExample example);
+    int updateByExampleSelective(@Param("record") TUser record, @Param("example") TUserCriteria example);
 
     @UpdateProvider(type=TUserSqlProvider.class, method="updateByExample")
-    int updateByExample(@Param("record") TUser record, @Param("example") TUserExample example);
+    int updateByExample(@Param("record") TUser record, @Param("example") TUserCriteria example);
 
     @UpdateProvider(type=TUserSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(TUser record);

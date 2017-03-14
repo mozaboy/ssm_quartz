@@ -141,4 +141,26 @@ public class TQuartz {
     public void setDescRipt(String descRipt) {
         this.descRipt = descRipt == null ? null : descRipt.trim();
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", jobId=").append(jobId);
+        sb.append(", jobGroup=").append(jobGroup);
+        sb.append(", triggerGroup=").append(triggerGroup);
+        sb.append(", jobName=").append(jobName);
+        sb.append(", triggerName=").append(triggerName);
+        sb.append(", className=").append(className);
+        sb.append(", enableStatus=").append(enableStatus);
+        sb.append(", triggerCron=").append(triggerCron);
+        sb.append(", triggerStatus=").append(triggerStatus);
+        sb.append(", crateTime=").append(crateTime);
+        sb.append(", updateTime=").append(updateTime);
+        sb.append(", descRipt=").append(descRipt);
+        sb.append("]");
+        return sb.toString();
+    }
 }

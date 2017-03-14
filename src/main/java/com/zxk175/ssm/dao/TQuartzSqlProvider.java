@@ -14,15 +14,15 @@ import static org.apache.ibatis.jdbc.SqlBuilder.VALUES;
 import static org.apache.ibatis.jdbc.SqlBuilder.WHERE;
 
 import com.zxk175.ssm.pojo.TQuartz;
-import com.zxk175.ssm.pojo.TQuartzExample.Criteria;
-import com.zxk175.ssm.pojo.TQuartzExample.Criterion;
-import com.zxk175.ssm.pojo.TQuartzExample;
+import com.zxk175.ssm.pojo.TQuartzCriteria.Criteria;
+import com.zxk175.ssm.pojo.TQuartzCriteria.Criterion;
+import com.zxk175.ssm.pojo.TQuartzCriteria;
 import java.util.List;
 import java.util.Map;
 
 public class TQuartzSqlProvider {
 
-    public String countByExample(TQuartzExample example) {
+    public String countByExample(TQuartzCriteria example) {
         BEGIN();
         SELECT("count(*)");
         FROM("t_quartz");
@@ -30,7 +30,7 @@ public class TQuartzSqlProvider {
         return SQL();
     }
 
-    public String deleteByExample(TQuartzExample example) {
+    public String deleteByExample(TQuartzCriteria example) {
         BEGIN();
         DELETE_FROM("t_quartz");
         applyWhere(example, false);
@@ -92,7 +92,7 @@ public class TQuartzSqlProvider {
         return SQL();
     }
 
-    public String selectByExample(TQuartzExample example) {
+    public String selectByExample(TQuartzCriteria example) {
         BEGIN();
         if (example != null && example.isDistinct()) {
             SELECT_DISTINCT("job_id");
@@ -122,7 +122,7 @@ public class TQuartzSqlProvider {
 
     public String updateByExampleSelective(Map<String, Object> parameter) {
         TQuartz record = (TQuartz) parameter.get("record");
-        TQuartzExample example = (TQuartzExample) parameter.get("example");
+        TQuartzCriteria example = (TQuartzCriteria) parameter.get("example");
         
         BEGIN();
         UPDATE("t_quartz");
@@ -196,7 +196,7 @@ public class TQuartzSqlProvider {
         SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
         SET("desc_ript = #{record.descRipt,jdbcType=VARCHAR}");
         
-        TQuartzExample example = (TQuartzExample) parameter.get("example");
+        TQuartzCriteria example = (TQuartzCriteria) parameter.get("example");
         applyWhere(example, true);
         return SQL();
     }
@@ -254,7 +254,7 @@ public class TQuartzSqlProvider {
         return SQL();
     }
 
-    protected void applyWhere(TQuartzExample example, boolean includeExamplePhrase) {
+    protected void applyWhere(TQuartzCriteria example, boolean includeExamplePhrase) {
         if (example == null) {
             return;
         }

@@ -2,7 +2,7 @@ package com.zxk175.ssm.service.impl;
 
 import com.zxk175.ssm.dao.TQuartzMapper;
 import com.zxk175.ssm.pojo.TQuartz;
-import com.zxk175.ssm.pojo.TQuartzExample;
+import com.zxk175.ssm.pojo.TQuartzCriteria;
 import com.zxk175.ssm.service.TQuartzService;
 import com.zxk175.ssm.util.quartz.QuartzUtil;
 import org.quartz.SchedulerException;
@@ -21,8 +21,8 @@ public class TQuartzServiceImpl implements TQuartzService {
     private TQuartzMapper quartzMapper;
 
     @Override
-    public List<TQuartz> getQuartzList(TQuartzExample example) {
-        return quartzMapper.selectByExample(example);
+    public List<TQuartz> getQuartzList(TQuartzCriteria criteria) {
+        return quartzMapper.selectByExample(criteria);
     }
 
     @Override

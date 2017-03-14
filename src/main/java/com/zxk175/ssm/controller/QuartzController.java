@@ -5,7 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.zxk175.ssm.dto.DataTablePage;
 import com.zxk175.ssm.dto.ResponseVo;
 import com.zxk175.ssm.pojo.TQuartz;
-import com.zxk175.ssm.pojo.TQuartzExample;
+import com.zxk175.ssm.pojo.TQuartzCriteria;
 import com.zxk175.ssm.service.TQuartzService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -88,12 +88,12 @@ public class QuartzController extends BaseController {
         PageHelper.startPage((start / length + 1), length);
 
         //查询条件
-        TQuartzExample example = new TQuartzExample();
+        TQuartzCriteria criteria = new TQuartzCriteria();
 
-        example.setOrderByClause("update_time desc");
+        criteria.setOrderByClause("update_time desc");
 
         //查询结果
-        List<TQuartz> quartzList = quartzService.getQuartzList(example);
+        List<TQuartz> quartzList = quartzService.getQuartzList(criteria);
 
         //取记录总条数
         PageInfo<TQuartz> pageInfo = new PageInfo<>(quartzList);

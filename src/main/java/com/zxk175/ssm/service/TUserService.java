@@ -1,7 +1,7 @@
 package com.zxk175.ssm.service;
 
 import com.zxk175.ssm.pojo.TUser;
-import com.zxk175.ssm.pojo.TUserExample;
+import com.zxk175.ssm.pojo.TUserCriteria;
 
 import java.util.List;
 
@@ -15,5 +15,5 @@ public interface TUserService {
 
     int update(TUser user, Long uid);
 
-    List<TUser> getAllUserByExample(TUserExample example);
+    List<TUser> getAllUserByExample(TUserCriteria criteria);
 }

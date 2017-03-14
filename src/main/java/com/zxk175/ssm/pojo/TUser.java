@@ -108,4 +108,23 @@ public class TUser {
     public void setState(Short state) {
         this.state = state;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", userName=").append(userName);
+        sb.append(", userPhone=").append(userPhone);
+        sb.append(", userEmail=").append(userEmail);
+        sb.append(", userPwd=").append(userPwd);
+        sb.append(", userSex=").append(userSex);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", modifyTime=").append(modifyTime);
+        sb.append(", state=").append(state);
+        sb.append("]");
+        return sb.toString();
+    }
 }
