@@ -1,4 +1,4 @@
-package com.zxk175.ssm.util;
+package com.zxk175.ssm.util.web;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

@@ -1,4 +1,4 @@
-package com.zxk175.ssm.util;
+package com.zxk175.ssm.util.json;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

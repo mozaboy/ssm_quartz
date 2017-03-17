@@ -1,4 +1,4 @@
-package com.zxk175.ssm.util;
+package com.zxk175.ssm.util.spring;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
