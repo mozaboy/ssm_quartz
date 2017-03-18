@@ -120,5 +120,5 @@
     <bean id="swagger2Config" class="com.zxk175.ssm.swagger2.Swagger2Config"/>
 
     <!-- 定义springContextUtil工具类 -->
-    <bean id="springContextUtil" class="com.zxk175.ssm.util.SpringContextUtil" scope="singleton"/>
+    <bean id="springContextUtil" class="com.zxk175.ssm.util.spring.SpringContextUtil" scope="singleton"/>
 </beans>

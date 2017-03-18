@@ -10,6 +10,7 @@ import com.zxk175.ssm.service.TQuartzService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
@@ -115,7 +116,10 @@ public class QuartzController extends BaseController {
      * @throws Exception
      */
     @ResponseBody
-    @RequestMapping(value = "/pause/{jobId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/pause/{jobId}", method = RequestMethod.PUT)
+    @ApiOperation(value = "暂停任务", notes = "暂停任务")
+    @ApiParam(required = true, name = "quartz", value = "任务实体Bean")
+    @ApiImplicitParam(required = true, name = "jobId", value = "任务Id", dataType = "string", paramType = "query")
     public ResponseVo pauseJob(@RequestBody TQuartz quartz, @PathVariable String jobId) throws Exception {
         quartz.setJobId(jobId);
         quartz.setTriggerStatus("2");
@@ -137,7 +141,10 @@ public class QuartzController extends BaseController {
      * @throws Exception
      */
     @ResponseBody
-    @RequestMapping(value = "/resume/{jobId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/resume/{jobId}", method = RequestMethod.PUT)
+    @ApiOperation(value = "恢复任务", notes = "恢复任务")
+    @ApiParam(required = true, name = "quartz", value = "任务实体Bean")
+    @ApiImplicitParam(required = true, name = "jobId", value = "任务Id", dataType = "string", paramType = "query")
     public ResponseVo resumeJob(@RequestBody TQuartz quartz, @PathVariable String jobId) throws Exception {
         quartz.setJobId(jobId);
         quartz.setTriggerStatus("1");
