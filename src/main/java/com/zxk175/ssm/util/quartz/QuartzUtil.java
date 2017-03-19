@@ -24,10 +24,10 @@ public class QuartzUtil {
             String cron = quartz.getTriggerCron();
 
             Scheduler scheduler = schedulerFactory.getScheduler();
-            Class<?> clazz = Class.forName(quartz.getClassName());
+            Class<? extends Job> clazz = (Class<? extends Job>) Class.forName(quartz.getClassName());
             // 任务名，任务组，任务执行类
             JobDetail jobDetail = JobBuilder
-                    .newJob((Class<? extends Job>) clazz)
+                    .newJob(clazz)
                     .withIdentity(jobName, jobGroup)
                     .build();
             // 触发器
