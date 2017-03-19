@@ -38,6 +38,16 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!-- XSS过滤器 -->
+    <filter>
+        <filter-name>xssFilter</filter-name>
+        <filter-class>com.zxk175.ssm.filter.xss.XSSFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>xssFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <!-- 字符集过滤器 -->
     <filter>
         <filter-name>encodingFilter</filter-name>
