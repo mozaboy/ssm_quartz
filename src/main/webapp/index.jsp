@@ -25,5 +25,7 @@
 <a href="task/show" target="_blank" class="link">查看所有任务</a>
 
 <a href="swagger-ui.html" target="_blank" class="link">项目API管理</a>
+
+<a href="tree/" target="_blank" class="link">TreeView</a>
 </body>
 </html>
