@@ -67,12 +67,11 @@
         function initTree(tree) {
             $('#tree').treeview({
                 data: tree,
+                unique: true,
                 showIcon: true,
                 showTags: true,
                 color: "#428bca",
-                expandIcon: 'glyphicon glyphicon-chevron-right',
-                collapseIcon: 'glyphicon glyphicon-chevron-down',
-                nodeIcon: 'glyphicon glyphicon-bookmark',
+                enableLinks: false,
                 levels: 1
             });
         };

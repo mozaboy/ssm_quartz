@@ -12,6 +12,8 @@ public class NodeVO {
 
     private String href;
 
+    private String[] tags;
+
     private Integer parentId;
 
     private List<NodeVO> nodes;
@@ -38,6 +40,14 @@ public class NodeVO {
 
     public void setHref(String href) {
         this.href = href;
+    }
+
+    public String[] getTags() {
+        return tags;
+    }
+
+    public void setTags(String[] tags) {
+        this.tags = tags;
     }
 
     public Integer getParentId() {

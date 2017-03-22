@@ -67,12 +67,13 @@ public class TreeController {
     }
 
     private NodeVO init(TChina list) {
+        List<TChina> chinas = listTree(Integer.valueOf(list.getCityId()));
         NodeVO node = new NodeVO();
         Integer cityId = list.getCityId();
         node.setNodeId(cityId);
         node.setText(list.getCityName());
         node.setHref("http://www.baidu.com");
-        List<TChina> chinas = listTree(Integer.valueOf(list.getCityId()));
+        node.setTags(new String[]{String.valueOf(chinas.size())});
         List<NodeVO> nodes = new ArrayList<>();
         for (TChina china : chinas) {
             NodeVO sub = init(china);
