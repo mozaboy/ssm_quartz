@@ -36,6 +36,26 @@
     <script src="${ctx}/js/base.js"></script>
     <script type="text/javascript">
         var ctx = "${ctx}";
+
+        /**
+         * 单击菜单展开和折叠
+         * note：修改过源码 691行代码
+         */
+        function itemOnclick(target) {
+            var tree = $('#tree');
+            //找到当前节点id
+            var nodeid = $(target).attr('data-nodeid');
+            //获取当前节点对象
+            var node = tree.treeview('getNode', nodeid);
+
+            if (node.state.expanded) {
+                //处于展开状态则折叠
+                tree.treeview('collapseNode', node.nodeId);
+            } else {
+                //展开
+                tree.treeview('expandNode', node.nodeId);
+            }
+        }
     </script>
 </head>
 <body>
