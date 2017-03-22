@@ -6,17 +6,20 @@ import java.util.List;
  * Created by zxk175 on 17/3/21.
  */
 public class NodeVO {
-    private Integer id;
-    private String text;
-    private String link = "#";
-    private List<NodeVO> nodes;
+    private Integer nodeId;
 
-    public Integer getId() {
-        return id;
+    private String text;
+
+    private Integer parentId;
+
+    private List<NodeVO> children;
+
+    public Integer getNodeId() {
+        return nodeId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setNodeId(Integer nodeId) {
+        this.nodeId = nodeId;
     }
 
     public String getText() {
@@ -27,19 +30,19 @@ public class NodeVO {
         this.text = text;
     }
 
-    public List<NodeVO> getNodes() {
-        return nodes;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setNodes(List<NodeVO> nodes) {
-        this.nodes = nodes;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
-    public String getLink() {
-        return link;
+    public List<NodeVO> getChildren() {
+        return children;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setChildren(List<NodeVO> children) {
+        this.children = children;
     }
 }

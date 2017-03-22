@@ -119,5 +119,11 @@
                enableDeleteByExample="true" enableSelectByExample="true"
                enableUpdateByExample="true">
         </table>
+
+        <table schema="${schemaName}" tableName="t_china"
+               domainObjectName="TChina" enableCountByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               enableUpdateByExample="true">
+        </table>
     </context>
 </generatorConfiguration>

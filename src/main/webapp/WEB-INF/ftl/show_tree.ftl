@@ -42,37 +42,27 @@
 <div id="tree"></div>
 <script type="text/javascript">
     $(function () {
-        function getTree() {
-            // var data = '';
-//            $.ajax({
-//                url: ctx + '/tree/init',
-//                type: 'post',
-//                success: function (res) {
-//                    data = res;
-//                }
-//            });
-            var data = [{
-                text: "p1",
-                nodes: [
-                    {text: "p1-1", id: '00001', nodeId: '00001'},
-                    {text: "p1-2", id: '00002'},
-                    {text: "p1-3", id: '00003'},
-                    {
-                        text: "p1-4", id: '00004',
-                        nodes: [
-                            {text: 'p1-4-1', id: '00005'},
-                            {text: 'p1-4-2', id: '00005'}
-                            ]
-                    }]
-            }]
-
-
-            return data;
-        }
-
-        $('#tree').treeview({
-            data: getTree()
+        // 异步请求TreeData
+        $.ajax({
+            url: ctx + '/tree/init',
+            type: 'post',
+            success: function (res) {
+                initTree(res);
+            }
         });
+
+        /**
+         * 初始化Tree
+         * @param tree
+         */
+        function initTree(tree) {
+            $('#tree').treeview({
+                data: tree,
+                showIcon: true,
+                showTags: true,
+                levels: 3
+            });
+        }
     })
 </script>
 </body>
