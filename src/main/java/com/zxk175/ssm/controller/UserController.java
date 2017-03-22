@@ -3,7 +3,7 @@ package com.zxk175.ssm.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.StringUtil;
-import com.zxk175.ssm.dto.DataTablePage;
+import com.zxk175.ssm.dto.DTPages;
 import com.zxk175.ssm.dto.ResponseVo;
 import com.zxk175.ssm.pojo.TUser;
 import com.zxk175.ssm.pojo.TUserCriteria;
@@ -132,7 +132,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/show", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "分页获取所有用户信息", notes = "分页获取所有用户信息")
     @ApiImplicitParam(required = true, name = "param", value = "DataTable默认参数", dataType = "string", paramType = "query")
-    public DataTablePage<TUser> showUserByPage(String param) throws Exception {
+    public DTPages<TUser> showUserByPage(String param) throws Exception {
         log.debug("查询所有用户信息");
         int start = 0;
         int length = 0;
@@ -161,7 +161,7 @@ public class UserController extends BaseController {
             }
         }
 
-        DataTablePage<TUser> page = null;
+        DTPages<TUser> page = null;
 
         //开始分页,参数1为请求第几页,参数2为请求条数
         PageHelper.startPage((start / length + 1), length);
@@ -183,7 +183,7 @@ public class UserController extends BaseController {
         PageInfo<TUser> pageInfo = new PageInfo<>(userList);
         long total = pageInfo.getTotal();
 
-        page = new DataTablePage<TUser>();
+        page = new DTPages<TUser>();
         page.setData(userList);
         page.setRecordsTotal(total);
         page.setRecordsFiltered((int) total);

@@ -2,7 +2,7 @@ package com.zxk175.ssm.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.zxk175.ssm.dto.DataTablePage;
+import com.zxk175.ssm.dto.DTPages;
 import com.zxk175.ssm.dto.ResponseVo;
 import com.zxk175.ssm.pojo.TQuartz;
 import com.zxk175.ssm.pojo.TQuartzCriteria;
@@ -58,7 +58,7 @@ public class QuartzController extends BaseController {
     @RequestMapping(value = "/show", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "分页获取所有任务信息", notes = "分页获取所有任务信息")
     @ApiImplicitParam(required = true, name = "param", value = "DataTable默认参数", dataType = "string", paramType = "query")
-    public DataTablePage<TQuartz> showTaskByPage(String param) throws Exception {
+    public DTPages<TQuartz> showTaskByPage(String param) throws Exception {
         log.debug("查询所有用户信息");
         int start = 0;
         int length = 0;
@@ -83,7 +83,7 @@ public class QuartzController extends BaseController {
             }
         }
 
-        DataTablePage<TQuartz> page = null;
+        DTPages<TQuartz> page = null;
 
         //开始分页,参数1为请求第几页,参数2为请求条数
         PageHelper.startPage((start / length + 1), length);
@@ -100,7 +100,7 @@ public class QuartzController extends BaseController {
         PageInfo<TQuartz> pageInfo = new PageInfo<>(quartzList);
         long total = pageInfo.getTotal();
 
-        page = new DataTablePage<TQuartz>();
+        page = new DTPages<TQuartz>();
         page.setData(quartzList);
         page.setRecordsTotal(total);
         page.setRecordsFiltered((int) total);

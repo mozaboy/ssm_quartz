@@ -22,10 +22,6 @@
     <![endif]-->
     <!-- font-awesome -->
     <link rel="stylesheet" type="text/css" href="${ctx}/library/fontAwesome/css/font-awesome.min.css"/>
-    <!-- datatable -->
-    <link rel="stylesheet" type="text/css" href="${ctx}/library/datatable/media/css/dataTables.bootstrap.min.css"/>
-    <script src="${ctx}/library/datatable/media/js/jquery.dataTables.js"></script>
-    <script src="${ctx}/library/datatable/media/js/dataTables.bootstrap.min.js"></script>
     <!-- layer -->
     <script src="${ctx}/library/lay/layer/layer.js"></script>
     <!-- base -->
