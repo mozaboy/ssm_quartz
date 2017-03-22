@@ -39,7 +39,16 @@
     </script>
 </head>
 <body>
-<div id="tree"></div>
+<div class="container-fluid">
+    <button id="btn-expand-all" class="btn">全部折叠</button>
+    <button id="btn-collapse-all"  class="btn">全部展开</button>
+
+    <div class="col-lg-2">
+        <div id="tree"></div>
+    </div>
+    <div class="col-lg-10">
+    </div>
+</div>
 <script type="text/javascript">
     $(function () {
         // 异步请求TreeData
@@ -60,9 +69,23 @@
                 data: tree,
                 showIcon: true,
                 showTags: true,
-                levels: 3
+                color: "#428bca",
+                expandIcon: 'glyphicon glyphicon-chevron-right',
+                collapseIcon: 'glyphicon glyphicon-chevron-down',
+                nodeIcon: 'glyphicon glyphicon-bookmark',
+                levels: 1
             });
-        }
+        };
+
+        // Expand/collapse all
+        $('#btn-expand-all').on('click', function (e) {
+            var levels = $('#select-expand-all-levels').val();
+            $('#tree').treeview('expandAll', { levels: levels, silent: $('#chk-expand-silent').is(':checked') });
+        });
+
+        $('#btn-collapse-all').on('click', function (e) {
+            $('#tree').treeview('collapseAll', { silent: $('#chk-expand-silent').is(':checked') });
+        });
     })
 </script>
 </body>

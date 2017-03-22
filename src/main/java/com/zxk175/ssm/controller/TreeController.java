@@ -4,6 +4,7 @@ import com.zxk175.ssm.dao.TChinaMapper;
 import com.zxk175.ssm.dto.NodeVO;
 import com.zxk175.ssm.pojo.TChina;
 import com.zxk175.ssm.pojo.TChinaCriteria;
+import io.swagger.models.auth.In;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,19 +35,49 @@ public class TreeController {
     @ResponseBody
     @RequestMapping("/init")
     public List<NodeVO> doInitTreeData() {
+        List<NodeVO> nodes = getTreeNodesById(0);
+        return nodes;
+    }
+
+    public List<TChina> listTree(Integer id) {
         TChinaCriteria example = new TChinaCriteria();
         TChinaCriteria.Criteria criteria = example.createCriteria();
-        criteria.andParentIdEqualTo(0);
+        criteria.andParentIdEqualTo(id);
+        criteria.andCityIdNotEqualTo(id);
         List<TChina> list = tChinaMapper.selectByExample(example);
-        int size = list.size();
-        List<NodeVO> nodeVOS = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            NodeVO node = new NodeVO();
-            node.setNodeId(list.get(i).getCityId());
-            node.setText(list.get(i).getCityName());
-            node.setParentId(list.get(i).getParentId());
-            nodeVOS.add(node);
+        return list;
+    }
+
+    /**
+     * 根据父Id,得到模块树列表
+     *
+     * @param pid
+     * @return
+     */
+    public List<NodeVO> getTreeNodesById(Integer pid) {
+        // 该方法可不用理会,这是内部得到数据的方法,通过父ID,得到下面的数据节点集合
+        List<TChina> chinas = listTree(pid);
+        List<NodeVO> treeNodes = new ArrayList<>();
+        for (TChina module : chinas) {
+            // 分别得到每个节点下的子节点集合
+            NodeVO treeNode = init(module);
+            treeNodes.add(treeNode);
         }
-        return nodeVOS;
+        return treeNodes;
+    }
+
+    private NodeVO init(TChina list) {
+        NodeVO node = new NodeVO();
+        Integer cityId = list.getCityId();
+        node.setNodeId(cityId);
+        node.setText(list.getCityName());
+        List<TChina> chinas = listTree(Integer.valueOf(list.getCityId()));
+        List<NodeVO> nodes = new ArrayList<>();
+        for (TChina china : chinas) {
+            NodeVO sub = init(china);
+            nodes.add(sub);
+        }
+        node.setNodes(nodes);
+        return node;
     }
 }

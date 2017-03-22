@@ -12,7 +12,7 @@ public class NodeVO {
 
     private Integer parentId;
 
-    private List<NodeVO> children;
+    private List<NodeVO> nodes;
 
     public Integer getNodeId() {
         return nodeId;
@@ -38,11 +38,11 @@ public class NodeVO {
         this.parentId = parentId;
     }
 
-    public List<NodeVO> getChildren() {
-        return children;
+    public List<NodeVO> getNodes() {
+        return nodes;
     }
 
-    public void setChildren(List<NodeVO> children) {
-        this.children = children;
+    public void setNodes(List<NodeVO> nodes) {
+        this.nodes = nodes;
     }
 }
