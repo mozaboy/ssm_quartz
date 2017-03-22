@@ -40,18 +40,16 @@
 </head>
 <body>
 <div class="container-fluid">
-
-
     <div class="col-lg-2">
         <button id="btn-expand-all" class="btn btn-sm btn-info">全部展开</button>
         <button id="btn-collapse-all" class="btn btn-sm btn-success">全部折叠</button>
         <button id="btn-check-all" class="btn btn-sm btn-info">全选</button>
         <button id="btn-uncheck-all" class="btn btn-sm btn-success">取消全选</button>
 
-
         <div id="tree"></div>
     </div>
     <div class="col-lg-8">
+        <table id="tree_table"></table>
     </div>
 </div>
 <script type="text/javascript">
@@ -104,7 +102,15 @@
                 expandIcon: "glyphicon glyphicon-plus",
                 // 展开图标
                 collapseIcon: "glyphicon glyphicon-minus",
-                // 选中时
+                // 取消选中时
+                onNodeSelected: function (event, node) {
+                    alert(JSON.stringify(node, null, 4));
+                },
+                // 取消选中时
+                onNodeUnselected: function (event, node) {
+                    alert(JSON.stringify(node, null, 4));
+                },
+                // 复选框选中时
                 onNodeChecked: function (event, node) {
                     // 获取所有子节点
                     var selectNodes = getNodeIdArr(node);
@@ -113,7 +119,7 @@
                         $('#tree').treeview('checkNode', [selectNodes, {silent: true}]);
                     }
                 },
-                // 取消选中时
+                // 复选框取消选中时
                 onNodeUnchecked: function (event, node) {
                     // 获取所有子节点
                     var selectNodes = getNodeIdArr(node);

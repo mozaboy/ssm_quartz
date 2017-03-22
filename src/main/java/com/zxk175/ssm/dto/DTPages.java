@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by zxk175 on 2017/2/20.
  */
-public class DataTablePage<T> {
+public class DTPages<T> {
     private List<T> data;
     private Long recordsTotal;
     private int recordsFiltered;
