@@ -60,7 +60,7 @@
         $.ajax({
             url: ctx + '/tree/init',
             type: 'post',
-            beforeSend:beforeSend, //发送请求
+            beforeSend: beforeSend, //发送请求
             success: function (res) {
                 $("#tree").html('');
                 initTree(res);
@@ -68,7 +68,7 @@
         });
 
         // 发送请求之前
-        function  beforeSend() {
+        function beforeSend() {
             $("#tree").append("<div>加载ing......<div>");
         }
 
@@ -93,7 +93,7 @@
                 // 启用Link
                 enableLinks: false,
                 // 是否显示边框
-                showBorder: false,
+                showBorder: true,
                 // 是否显示复选框
                 showCheckbox: true,
                 // 是否高亮选中
@@ -106,16 +106,50 @@
                 collapseIcon: "glyphicon glyphicon-minus",
                 // 选中时
                 onNodeChecked: function (event, node) {
-                    if (node.nodes.length > 0) {
-                        alert(JSON.stringify(node, null, '\t'));
+                    // 获取所有子节点
+                    var selectNodes = getNodeIdArr(node);
+                    // 子节点不为空，则选中所有子节点
+                    if (selectNodes) {
+                        $('#tree').treeview('checkNode', [selectNodes, {silent: true}]);
                     }
                 },
                 // 取消选中时
                 onNodeUnchecked: function (event, node) {
-                    //alert(JSON.stringify(node));
+                    // 获取所有子节点
+                    var selectNodes = getNodeIdArr(node);
+                    // 子节点不为空，则取消选中所有子节点
+                    if (selectNodes) {
+                        $('#tree').treeview('uncheckNode', [selectNodes, {silent: true}]);
+                    }
                 }
             });
         };
+
+        /**
+         * 递归获取所有的节点id
+         *
+         * 引用Link：http://www.augsky.com/992.html
+         * @param node
+         * @returns {Array}
+         */
+        function getNodeIdArr(node) {
+            var ts = [];
+            if (node.nodes) {
+                for (x in node.nodes) {
+                    ts.push(node.nodes[x].nodeId)
+                    if (node.nodes[x].nodes) {
+                        var getNodeDieDai = getNodeIdArr(node.nodes[x]);
+                        for (j in getNodeDieDai) {
+                            ts.push(getNodeDieDai[j]);
+                        }
+                    }
+                }
+            } else {
+                ts.push(node.nodeId);
+            }
+            return ts;
+        }
+
 
         // 全部展开
         $('#btn-expand-all').on('click', function (e) {
