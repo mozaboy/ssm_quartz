@@ -40,13 +40,18 @@
 </head>
 <body>
 <div class="container-fluid">
-    <button id="btn-expand-all" class="btn btn-info">全部展开</button>
-    <button id="btn-collapse-all" class="btn btn-success">全部折叠</button>
+
 
     <div class="col-lg-2">
+        <button id="btn-expand-all" class="btn btn-sm btn-info">全部展开</button>
+        <button id="btn-collapse-all" class="btn btn-sm btn-success">全部折叠</button>
+        <button id="btn-check-all" class="btn btn-sm btn-info">全选</button>
+        <button id="btn-uncheck-all" class="btn btn-sm btn-success">取消全选</button>
+
+
         <div id="tree"></div>
     </div>
-    <div class="col-lg-10">
+    <div class="col-lg-8">
     </div>
 </div>
 <script type="text/javascript">
@@ -55,10 +60,17 @@
         $.ajax({
             url: ctx + '/tree/init',
             type: 'post',
+            beforeSend:beforeSend, //发送请求
             success: function (res) {
+                $("#tree").html('');
                 initTree(res);
             }
         });
+
+        // 发送请求之前
+        function  beforeSend() {
+            $("#tree").append("<div>加载ing......<div>");
+        }
 
         /**
          * 初始化Tree
@@ -67,12 +79,39 @@
         function initTree(tree) {
             $('#tree').treeview({
                 data: tree,
-                unique: true,
-                showIcon: true,
+                levels: 1,
+                showIcon: false,
                 showTags: true,
-                color: "#428bca",
+                // 文字颜色
+                color: "#4289ca",
+                // 背景颜色
+                backColor: '#eee',
+                // 悬浮颜色
+                onhoverColor: "#E8E8E8",
+                // 启用Link
                 enableLinks: false,
-                levels: 1
+                // 是否显示边框
+                showBorder: false,
+                // 是否显示复选框
+                showCheckbox: true,
+                // 是否高亮选中
+                highlightSelected: true,
+                // 节点上的图标
+                nodeIcon: 'glyphicon glyphicon-globe',
+                // 折叠图标
+                expandIcon: "glyphicon glyphicon-plus",
+                // 展开图标
+                collapseIcon: "glyphicon glyphicon-minus",
+                // 选中时
+                onNodeChecked: function (event, node) {
+                    if (node.nodes.length > 0) {
+                        alert(JSON.stringify(node, null, '\t'));
+                    }
+                },
+                // 取消选中时
+                onNodeUnchecked: function (event, node) {
+                    //alert(JSON.stringify(node));
+                }
             });
         };
 
@@ -84,6 +123,16 @@
         // 全部折叠
         $('#btn-collapse-all').on('click', function (e) {
             $('#tree').treeview('collapseAll', {silent: $('#chk-expand-silent').is(':checked')});
+        });
+
+        // 全选
+        $('#btn-check-all').on('click', function (e) {
+            $('#tree').treeview('checkAll', {silent: $('#chk-check-silent').is(':checked')});
+        });
+
+        // 取消全选
+        $('#btn-uncheck-all').on('click', function (e) {
+            $('#tree').treeview('uncheckAll', {silent: $('#chk-check-silent').is(':checked')});
         });
     })
 </script>
