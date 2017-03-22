@@ -71,6 +71,7 @@ public class TreeController {
         Integer cityId = list.getCityId();
         node.setNodeId(cityId);
         node.setText(list.getCityName());
+        node.setHref("http://www.baidu.com");
         List<TChina> chinas = listTree(Integer.valueOf(list.getCityId()));
         List<NodeVO> nodes = new ArrayList<>();
         for (TChina china : chinas) {

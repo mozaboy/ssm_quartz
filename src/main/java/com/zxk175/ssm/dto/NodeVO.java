@@ -10,6 +10,8 @@ public class NodeVO {
 
     private String text;
 
+    private String href;
+
     private Integer parentId;
 
     private List<NodeVO> nodes;
@@ -28,6 +30,14 @@ public class NodeVO {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getHref() {
+        return href;
+    }
+
+    public void setHref(String href) {
+        this.href = href;
     }
 
     public Integer getParentId() {

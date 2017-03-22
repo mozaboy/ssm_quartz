@@ -40,8 +40,8 @@
 </head>
 <body>
 <div class="container-fluid">
-    <button id="btn-expand-all" class="btn">全部折叠</button>
-    <button id="btn-collapse-all"  class="btn">全部展开</button>
+    <button id="btn-expand-all" class="btn btn-info">全部展开</button>
+    <button id="btn-collapse-all" class="btn btn-success">全部折叠</button>
 
     <div class="col-lg-2">
         <div id="tree"></div>
@@ -77,14 +77,13 @@
             });
         };
 
-        // Expand/collapse all
+        //
         $('#btn-expand-all').on('click', function (e) {
-            var levels = $('#select-expand-all-levels').val();
-            $('#tree').treeview('expandAll', { levels: levels, silent: $('#chk-expand-silent').is(':checked') });
+            $('#tree').treeview('expandAll', {silent: $('#chk-expand-silent').is(':checked')});
         });
 
         $('#btn-collapse-all').on('click', function (e) {
-            $('#tree').treeview('collapseAll', { silent: $('#chk-expand-silent').is(':checked') });
+            $('#tree').treeview('collapseAll', {silent: $('#chk-expand-silent').is(':checked')});
         });
     })
 </script>
