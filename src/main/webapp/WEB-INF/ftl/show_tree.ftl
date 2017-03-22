@@ -24,11 +24,15 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/library/fontAwesome/css/font-awesome.min.css"/>
     <!-- layer -->
     <script src="${ctx}/library/lay/layer/layer.js"></script>
-    <!-- base -->
-    <link rel="stylesheet" type="text/css" href="${ctx}/css/base.css"/>
-
+    <!-- bootstrap-treeview -->
     <link rel="stylesheet" type="text/css" href="${ctx}/library/bootstrap/plugins/tree/css/bootstrap-treeview.css"/>
     <script src="${ctx}/library/bootstrap/plugins/tree/js/bootstrap-treeview.js"></script>
+    <!-- bootstrap-treeview -->
+    <link rel="stylesheet" type="text/css" href="${ctx}/library/bootstrap/plugins/table/1.11.1/bootstrap-table.css"/>
+    <script src="${ctx}/library/bootstrap/plugins/table/1.11.1/bootstrap-table.js"></script>
+    <script src="${ctx}/library/bootstrap/plugins/table/1.11.1/locale/bootstrap-table-zh-CN.js"></script>
+    <!-- base -->
+    <link rel="stylesheet" type="text/css" href="${ctx}/css/base.css"/>
     <script src="${ctx}/js/base.js"></script>
     <script type="text/javascript">
         var ctx = "${ctx}";
@@ -174,5 +178,6 @@
         });
     })
 </script>
+<script src="${ctx}/js/bt-table.js"></script>
 </body>
 </html>
