@@ -16,18 +16,17 @@ $(function () {
     //使用严格模式
     "use strict";
 
-    tableInit();
     $table.bootstrapTable('hideLoading');
 })
 
 //初始化Table
-function tableInit() {
+function tableInit(data) {
     //先销毁表格
     $table.bootstrapTable('destroy');
 
     $table.bootstrapTable({
         //请求地址
-        url: ctx + '/tree/show/10000/singe',
+        url: ctx + '/tree/show/' + data + '/singe',
         //请求方式
         method: 'post',
         //请求内容类型
@@ -145,13 +144,7 @@ function genderIndex(value, row, index) {
 
 //查询条件与分页数据
 function queryParams(params) {
-    //排序方式
-    params.order = "modify_time desc";
     //第几页
     params.nowPage = this.pageNumber;
-    //name
-    params.name = $("#name").val();
-    //sex
-    params.sex = $('#sex option:selected').val();
     return params;
 }

@@ -104,11 +104,12 @@
                 collapseIcon: "glyphicon glyphicon-minus",
                 // 取消选中时
                 onNodeSelected: function (event, node) {
-                    alert(JSON.stringify(node, null, 4));
+                    //alert(JSON.stringify(node, null, 4));
+                    tableInit(node.nodeId);
                 },
                 // 取消选中时
                 onNodeUnselected: function (event, node) {
-                    alert(JSON.stringify(node, null, 4));
+                    //alert(JSON.stringify(node, null, 4));
                 },
                 // 复选框选中时
                 onNodeChecked: function (event, node) {

@@ -58,7 +58,7 @@ public class TreeController {
         TChinaCriteria example = new TChinaCriteria();
         TChinaCriteria.Criteria criteria = example.createCriteria();
         if ("singe".equals(type)) {
-            criteria.andCityIdNotEqualTo(id);
+            criteria.andParentIdEqualTo(id);
         } else {
             criteria.andParentIdEqualTo(id);
             criteria.andCityIdNotEqualTo(id);
