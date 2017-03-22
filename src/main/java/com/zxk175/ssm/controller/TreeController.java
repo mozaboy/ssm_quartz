@@ -39,6 +39,12 @@ public class TreeController {
         return nodes;
     }
 
+    /**
+     * 通过父Id,得到下面的数据节点集合
+     *
+     * @param id
+     * @return
+     */
     public List<TChina> listTree(Integer id) {
         TChinaCriteria example = new TChinaCriteria();
         TChinaCriteria.Criteria criteria = example.createCriteria();
@@ -55,7 +61,6 @@ public class TreeController {
      * @return
      */
     public List<NodeVO> getTreeNodesById(Integer pid) {
-        // 该方法可不用理会,这是内部得到数据的方法,通过父ID,得到下面的数据节点集合
         List<TChina> chinas = listTree(pid);
         List<NodeVO> treeNodes = new ArrayList<>();
         for (TChina module : chinas) {
@@ -66,6 +71,12 @@ public class TreeController {
         return treeNodes;
     }
 
+    /**
+     * 递归获取City数据
+     *
+     * @param list
+     * @return
+     */
     private NodeVO init(TChina list) {
         List<TChina> chinas = listTree(Integer.valueOf(list.getCityId()));
         NodeVO node = new NodeVO();

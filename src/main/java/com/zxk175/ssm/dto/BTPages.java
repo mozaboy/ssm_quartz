@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class BTPages<T> implements Serializable {
-    private static final long serialVersionUID = 768549219446295665L;
+    private static final long serialVersionUID = 1L;
     // 成功与否
     private boolean success;
     // 信息
