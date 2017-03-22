@@ -116,7 +116,7 @@ public class QuartzController extends BaseController {
      * @throws Exception
      */
     @ResponseBody
-    @RequestMapping(value = "/pause/{jobId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/pause/{jobId}", method = RequestMethod.POST)
     @ApiOperation(value = "暂停任务", notes = "暂停任务")
     @ApiParam(required = true, name = "quartz", value = "任务实体Bean")
     @ApiImplicitParam(required = true, name = "jobId", value = "任务Id", dataType = "string", paramType = "query")
@@ -141,7 +141,7 @@ public class QuartzController extends BaseController {
      * @throws Exception
      */
     @ResponseBody
-    @RequestMapping(value = "/resume/{jobId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/resume/{jobId}", method = RequestMethod.POST)
     @ApiOperation(value = "恢复任务", notes = "恢复任务")
     @ApiParam(required = true, name = "quartz", value = "任务实体Bean")
     @ApiImplicitParam(required = true, name = "jobId", value = "任务Id", dataType = "string", paramType = "query")

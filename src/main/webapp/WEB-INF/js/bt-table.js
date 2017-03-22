@@ -7,9 +7,6 @@
 
 var $table = $('#tree_table');
 
-//bootstrapTable使用中文
-//$.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['zh-CN']);
-
 //防止表头与表格不对齐
 $(window).resize(function () {
     $table.bootstrapTable('resetView');
@@ -30,13 +27,15 @@ function tableInit() {
 
     $table.bootstrapTable({
         //请求地址
-        url: ctx+'/tree/show/10000/singe',
+        url: ctx + '/tree/show/10000/singe',
         //请求方式
         method: 'post',
         //请求内容类型
         contentType: "application/x-www-form-urlencoded",
         //数据类型
         dataType: "json",
+        //table高度
+        height: 482,
         //是否显示行间隔色
         striped: true,
         //是否启用排序
@@ -48,17 +47,13 @@ function tableInit() {
         //每行的唯一标识
         uniqueId: "id",
         //显示隐藏列
-        showColumns: true,
+        showColumns: false,
         //显示刷新按钮
         showRefresh: false,
         //切换显示样式
         showToggle: false,
         //显示Table脚部
-        showFooter: false,
-        //是否显示详细视图
-        cardView: false,
-        //是否显示父子表
-        detailView: false,
+        showFooter: true,
         //是否显示分页
         pagination: true,
         //是否显示分页按钮
@@ -76,7 +71,7 @@ function tableInit() {
         //初始化加载第1页，默认第1页
         pageNumber: 1,
         //可供选择的每页的行数
-        pageList: "[10, 25, 50, 80, 100]",
+        pageList: "[10, 20, 50, 80, 100]",
         paginationFirstText: "首页",
         paginationPreText: "上一页",
         paginationNextText: "下一页",
