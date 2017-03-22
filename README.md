@@ -8,6 +8,8 @@ SSM三大框架整合 (Spring(4.3.4.RELEASE)+SpringMVC(4.3.4.RELEASE)+MyBatis(3.
 
 >集成BootStrap-TreeView
 
+>集成BootStrap-Table
+
 >![1.png](./shot/1.png)
 >![2.png](./shot/2.png)
 >![3.png](./shot/3.png)
