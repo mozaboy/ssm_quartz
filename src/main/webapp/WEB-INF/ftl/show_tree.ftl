@@ -105,9 +105,9 @@
                 // 背景颜色
                 backColor: '#eee',
                 // 悬浮颜色
-                onhoverColor: "#E8E8E8",
+                onhoverColor: "#e2e2e2",
                 // 选中背景颜色
-                selectedBackColor: "#8D9CAA",
+                selectedBackColor: "#8d9ccc",
                 // 启用Link
                 enableLinks: false,
                 // 是否显示边框
@@ -148,6 +148,10 @@
                     if (selectNodes) {
                         $('#tree').treeview('uncheckNode', [selectNodes, {silent: true}]);
                     }
+                },
+                error: function () {
+                    $("#tree").append('<div>Tree加载失败!<div>');
+                    //layer.msg("Tree加载失败!", {icon: 2, time: 2000});
                 }
             });
         };
