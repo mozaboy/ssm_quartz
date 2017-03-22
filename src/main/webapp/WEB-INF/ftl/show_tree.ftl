@@ -88,6 +88,8 @@
                 backColor: '#eee',
                 // 悬浮颜色
                 onhoverColor: "#E8E8E8",
+                // 选中背景颜色
+                selectedBackColor: "#8D9CAA",
                 // 启用Link
                 enableLinks: false,
                 // 是否显示边框
