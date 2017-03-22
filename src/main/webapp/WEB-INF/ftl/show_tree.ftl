@@ -77,11 +77,12 @@
             });
         };
 
-        //
+        // 全部展开
         $('#btn-expand-all').on('click', function (e) {
             $('#tree').treeview('expandAll', {silent: $('#chk-expand-silent').is(':checked')});
         });
 
+        // 全部折叠
         $('#btn-collapse-all').on('click', function (e) {
             $('#tree').treeview('collapseAll', {silent: $('#chk-expand-silent').is(':checked')});
         });
