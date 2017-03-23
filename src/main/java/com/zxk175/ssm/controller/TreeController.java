@@ -128,7 +128,10 @@ public class TreeController {
         node.setNodeId(cityId);
         node.setText(tChina.getCityName());
         node.setHref("http://www.baidu.com");
-        node.setTags(new String[]{String.valueOf(chinas.size())});
+        int size = chinas.size();
+        if (size > 0) {
+            node.setTags(new String[]{String.valueOf(size)});
+        }
         node.setSelectable(true);
         List<Node> nodes = null;
 
