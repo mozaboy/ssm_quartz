@@ -98,7 +98,7 @@
             $('#tree').treeview({
                 data: tree,
                 levels: 1,
-                showIcon: false,
+                showIcon: true,
                 showTags: true,
                 // 文字颜色
                 color: "#4289ca",
@@ -118,6 +118,8 @@
                 highlightSelected: true,
                 // 节点上的图标
                 nodeIcon: 'glyphicon glyphicon-globe',
+                // 选中时的图标
+                selectedIcon: "glyphicon glyphicon-stop",
                 // 折叠图标
                 expandIcon: "glyphicon glyphicon-plus",
                 // 展开图标

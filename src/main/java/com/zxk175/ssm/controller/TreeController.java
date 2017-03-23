@@ -119,22 +119,32 @@ public class TreeController {
     /**
      * 递归获取City数据
      *
-     * @param list
+     * @param tChina
      * @return
      */
-    private NodeVO init(TChina list) {
-        List<TChina> chinas = listTree(Integer.valueOf(list.getCityId()));
+    private NodeVO init(TChina tChina) {
+        List<TChina> chinas = listTree(Integer.valueOf(tChina.getCityId()));
         NodeVO node = new NodeVO();
-        Integer cityId = list.getCityId();
+        Integer cityId = tChina.getCityId();
         node.setNodeId(cityId);
-        node.setText(list.getCityName());
+        node.setText(tChina.getCityName());
         node.setHref("http://www.baidu.com");
         node.setTags(new String[]{String.valueOf(chinas.size())});
+        node.setSelectable(true);
         List<NodeVO> nodes = new ArrayList<>();
-        for (TChina china : chinas) {
-            NodeVO sub = init(china);
-            nodes.add(sub);
+
+        // 判断是否为叶子节点
+        if (chinas.isEmpty()) {
+            node.setLeaf(true);
+            node.setIcon("glyphicon glyphicon-leaf");
+        } else {
+            //不是叶子节点，递归查询下一层子节点
+            for (TChina china : chinas) {
+                NodeVO sub = init(china);
+                nodes.add(sub);
+            }
         }
+
         node.setNodes(nodes);
         return node;
     }
