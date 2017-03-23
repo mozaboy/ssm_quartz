@@ -43,7 +43,6 @@ public class TreeController {
     public BTPages<TChina> showTreeDataByParentId(@PathVariable Integer id, @PathVariable String type, HttpServletRequest request) {
         String limit = request.getParameter("limit");
         String nowPage = request.getParameter("nowPage");
-        String order = request.getParameter("order");
 
         // 当前页数
         int nowPaged = Integer.parseInt(null == nowPage ? "1" : nowPage);
@@ -51,10 +50,10 @@ public class TreeController {
         int limitd = Integer.parseInt(null == limit ? "10" : limit);
 
         BTPages<TChina> pages = new BTPages<>();
-        //开始分页,参数1为请求第几页,参数2为请求条数
+        // 开始分页,参数1为请求第几页,参数2为请求条数
         PageHelper.startPage(nowPaged, limitd);
 
-        //查询条件
+        // 查询条件
         TChinaCriteria example = new TChinaCriteria();
         TChinaCriteria.Criteria criteria = example.createCriteria();
         if ("singe".equals(type)) {
@@ -65,7 +64,7 @@ public class TreeController {
         }
         List<TChina> list = tChinaMapper.selectByExample(example);
 
-        //取记录总条数
+        // 取记录总条数
         PageInfo<TChina> pageInfo = new PageInfo<>(list);
         int total = (int) pageInfo.getTotal();
 
@@ -80,7 +79,7 @@ public class TreeController {
     @ResponseBody
     @RequestMapping("/init")
     public List<Node> doInitTreeData() {
-        List<Node> nodes = getTreeNodesById(0);
+        List<Node> nodes = getTreeNodesByPId(0);
         return nodes;
     }
 
@@ -105,12 +104,12 @@ public class TreeController {
      * @param pid
      * @return
      */
-    public List<Node> getTreeNodesById(Integer pid) {
+    public List<Node> getTreeNodesByPId(Integer pid) {
         List<TChina> chinas = listTree(pid);
         List<Node> treeNodes = new ArrayList<>();
         for (TChina module : chinas) {
             // 分别得到每个节点下的子节点集合
-            Node treeNode = init(module);
+            Node treeNode = initData(module);
             treeNodes.add(treeNode);
         }
         return treeNodes;
@@ -122,7 +121,7 @@ public class TreeController {
      * @param tChina
      * @return
      */
-    private Node init(TChina tChina) {
+    private Node initData(TChina tChina) {
         List<TChina> chinas = listTree(Integer.valueOf(tChina.getCityId()));
         Node node = new Node();
         Integer cityId = tChina.getCityId();
@@ -138,10 +137,10 @@ public class TreeController {
             node.setLeaf(true);
             node.setIcon("glyphicon glyphicon-leaf");
         } else {
+            // 不是叶子节点，递归查询下一层子节点
             nodes = new ArrayList<>();
-            //不是叶子节点，递归查询下一层子节点
             for (TChina china : chinas) {
-                Node sub = init(china);
+                Node sub = initData(china);
                 nodes.add(sub);
             }
         }
