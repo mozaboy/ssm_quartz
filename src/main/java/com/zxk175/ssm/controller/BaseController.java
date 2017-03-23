@@ -1,6 +1,6 @@
 package com.zxk175.ssm.controller;
 
-import com.zxk175.ssm.dto.ExceptionVo;
+import com.zxk175.ssm.dto.exception.ExceptionVo;
 import com.zxk175.ssm.exception.BusinessException;
 import com.zxk175.ssm.exception.ParameterException;
 import com.zxk175.ssm.util.json.JacksonUtil;

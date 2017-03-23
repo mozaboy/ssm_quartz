@@ -2,8 +2,8 @@ package com.zxk175.ssm.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.zxk175.ssm.dto.DTPages;
-import com.zxk175.ssm.dto.ResponseVo;
+import com.zxk175.ssm.dto.table.DTPages;
+import com.zxk175.ssm.dto.web.ResponseVo;
 import com.zxk175.ssm.pojo.TQuartz;
 import com.zxk175.ssm.pojo.TQuartzCriteria;
 import com.zxk175.ssm.service.TQuartzService;

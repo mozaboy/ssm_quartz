@@ -3,21 +3,24 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/mvc
-       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
 
     <!-- 启动注解，注册服务，如验证框架、全局类型转换器 -->
     <mvc:annotation-driven>
-        <!-- 处理responseBody日期类型 -->
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="objectMapper">
-                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                    <bean class="com.zxk175.ssm.dto.jackson.MyObjectMapper">
+                        <!-- 处理日期类型 -->
                         <property name="dateFormat">
                             <bean class="java.text.SimpleDateFormat">
                                 <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"/>

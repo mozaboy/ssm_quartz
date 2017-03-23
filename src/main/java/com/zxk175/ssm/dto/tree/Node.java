@@ -1,11 +1,12 @@
-package com.zxk175.ssm.dto;
+package com.zxk175.ssm.dto.tree;
 
 import java.util.List;
 
 /**
  * Created by zxk175 on 17/3/21.
  */
-public class NodeVO {
+
+public class Node {
     private Integer nodeId;
 
     private String text;
@@ -18,7 +19,7 @@ public class NodeVO {
 
     private Integer parentId;
 
-    private List<NodeVO> nodes;
+    private List<Node> nodes;
 
     private boolean isLeaf = false;
 
@@ -75,11 +76,11 @@ public class NodeVO {
         this.parentId = parentId;
     }
 
-    public List<NodeVO> getNodes() {
+    public List<Node> getNodes() {
         return nodes;
     }
 
-    public void setNodes(List<NodeVO> nodes) {
+    public void setNodes(List<Node> nodes) {
         this.nodes = nodes;
     }
 

@@ -1,4 +1,4 @@
-package com.zxk175.ssm.dto;
+package com.zxk175.ssm.dto.web;
 
 /**
  * Created by zxk175 on 2017/2/24.

@@ -1,4 +1,4 @@
-package com.zxk175.ssm.dto;
+package com.zxk175.ssm.dto.tree;
 
 /**
  * Created by Administrator on 2017/3/23.

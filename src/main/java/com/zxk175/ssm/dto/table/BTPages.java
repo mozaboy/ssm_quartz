@@ -1,8 +1,11 @@
-package com.zxk175.ssm.dto;
+package com.zxk175.ssm.dto.table;
 
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Created by zxk175 on 2017/3/20.
+ */
 public class BTPages<T> implements Serializable {
     private static final long serialVersionUID = 1L;
     // 成功与否

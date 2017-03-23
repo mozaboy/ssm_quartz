@@ -3,11 +3,10 @@ package com.zxk175.ssm.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zxk175.ssm.dao.TChinaMapper;
-import com.zxk175.ssm.dto.BTPages;
-import com.zxk175.ssm.dto.NodeVO;
+import com.zxk175.ssm.dto.table.BTPages;
+import com.zxk175.ssm.dto.tree.Node;
 import com.zxk175.ssm.pojo.TChina;
 import com.zxk175.ssm.pojo.TChinaCriteria;
-import io.swagger.models.auth.In;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.soap.Node;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,8 +77,8 @@ public class TreeController {
 
     @ResponseBody
     @RequestMapping("/init")
-    public List<NodeVO> doInitTreeData() {
-        List<NodeVO> nodes = getTreeNodesById(0);
+    public List<Node> doInitTreeData() {
+        List<Node> nodes = getTreeNodesById(0);
         return nodes;
     }
 
@@ -105,12 +103,12 @@ public class TreeController {
      * @param pid
      * @return
      */
-    public List<NodeVO> getTreeNodesById(Integer pid) {
+    public List<Node> getTreeNodesById(Integer pid) {
         List<TChina> chinas = listTree(pid);
-        List<NodeVO> treeNodes = new ArrayList<>();
+        List<Node> treeNodes = new ArrayList<>();
         for (TChina module : chinas) {
             // 分别得到每个节点下的子节点集合
-            NodeVO treeNode = init(module);
+            Node treeNode = init(module);
             treeNodes.add(treeNode);
         }
         return treeNodes;
@@ -122,25 +120,26 @@ public class TreeController {
      * @param tChina
      * @return
      */
-    private NodeVO init(TChina tChina) {
+    private Node init(TChina tChina) {
         List<TChina> chinas = listTree(Integer.valueOf(tChina.getCityId()));
-        NodeVO node = new NodeVO();
+        Node node = new Node();
         Integer cityId = tChina.getCityId();
         node.setNodeId(cityId);
         node.setText(tChina.getCityName());
         node.setHref("http://www.baidu.com");
         node.setTags(new String[]{String.valueOf(chinas.size())});
         node.setSelectable(true);
-        List<NodeVO> nodes = new ArrayList<>();
+        List<Node> nodes = null;
 
         // 判断是否为叶子节点
         if (chinas.isEmpty()) {
             node.setLeaf(true);
             node.setIcon("glyphicon glyphicon-leaf");
         } else {
+            nodes = new ArrayList<>();
             //不是叶子节点，递归查询下一层子节点
             for (TChina china : chinas) {
-                NodeVO sub = init(china);
+                Node sub = init(china);
                 nodes.add(sub);
             }
         }
