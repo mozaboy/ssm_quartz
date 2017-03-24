@@ -38,7 +38,12 @@ public class TUserServiceImpl implements TUserService {
     }
 
     @Override
-    public List<TUser> getAllUserByExample(TUserCriteria criteria) {
+    public TUser selectByPrimaryKey(Long id) {
+        return userDao.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<TUser> selectByExample(TUserCriteria criteria) {
         return userDao.selectByExample(criteria);
     }
 }

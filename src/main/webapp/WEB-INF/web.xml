@@ -14,7 +14,8 @@
         <param-value>
             classpath:spring/spring-base.xml,
             classpath:spring/spring-dao.xml,
-            classpath:spring/spring-task.xml
+            classpath:spring/spring-task.xml,
+            classpath:spring/spring-ws.xml
         </param-value>
     </context-param>
 
@@ -130,6 +131,18 @@
         <url-pattern>*.woff2</url-pattern>
     </servlet-mapping>
     <!-- 解决bootstrap glyphicon图标不显示问题 end-->
+
+    <!-- cxf start -->
+    <servlet>
+        <servlet-name>cxf</servlet-name>
+        <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>cxf</servlet-name>
+        <url-pattern>/ws/*</url-pattern>
+    </servlet-mapping>
+    <!-- cxf end -->
 
     <!-- 配置session超时时间，单位分钟 -->
     <session-config>

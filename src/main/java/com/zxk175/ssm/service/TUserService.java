@@ -15,5 +15,7 @@ public interface TUserService {
 
     int update(TUser user, Long uid);
 
-    List<TUser> getAllUserByExample(TUserCriteria criteria);
+    TUser selectByPrimaryKey(Long id);
+
+    List<TUser> selectByExample(TUserCriteria criteria);
 }

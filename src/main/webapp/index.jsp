@@ -27,5 +27,7 @@
 <a href="swagger-ui.html" target="_blank" class="link">项目API管理</a>
 
 <a href="tree/" target="_blank" class="link">TreeView</a>
+
+<a href="ws/" target="_blank" class="link">WebService</a>
 </body>
 </html>

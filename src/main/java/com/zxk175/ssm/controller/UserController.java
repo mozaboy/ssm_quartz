@@ -177,7 +177,7 @@ public class UserController extends BaseController {
         example.setOrderByClause("modify_time desc");
 
         //查询结果
-        List<TUser> userList = userService.getAllUserByExample(example);
+        List<TUser> userList = userService.selectByExample(example);
 
         //取记录总条数
         PageInfo<TUser> pageInfo = new PageInfo<>(userList);

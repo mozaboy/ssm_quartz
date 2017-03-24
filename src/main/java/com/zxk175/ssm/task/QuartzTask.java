@@ -34,7 +34,7 @@ public class QuartzTask implements JobFactory {
 
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         TUserCriteria example = new TUserCriteria();
-        List<TUser> users = userService.getAllUserByExample(example);
+        List<TUser> users = userService.selectByExample(example);
         int size = users.size();
         if (null != users && size > 0) {
             for (TUser user : users) {
