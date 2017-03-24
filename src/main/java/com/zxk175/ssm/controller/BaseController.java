@@ -52,21 +52,22 @@ public class BaseController {
         StringBuffer sb = new StringBuffer();
         for (StackTraceElement ste : stackTrace) {
             if (isAjax) {
-                sb.append(SPANSTART + "at ").append(ste).append(SPANEND + "<br/>");
+                sb.append(SPANSTART + "at ").append(ste);
             } else {
-                sb.append("at ").append(ste).append("<br/>");
+                sb.append(ste).append("\n");
             }
         }
         String exType = SPANSTART + ex + SPANEND + "<br/>";
 
         ModelAndView mv = null;
+        String exStr = sb.toString().replaceAll("\n", "<br/>");
         if (isAjax) {
             request.setAttribute("page_title", "Ajax请求异常页");
-            return JacksonUtil.objectToJsonStr(new ExceptionVo(500, exType, sb.toString()));
+            return JacksonUtil.objectToJsonStr(new ExceptionVo(500, exType, exStr));
         } else {
             mv = new ModelAndView();
             mv.addObject("exType", ex);
-            mv.addObject("exMsg", sb.toString());
+            mv.addObject("exMsg", exStr);
             // 根据不同错误转向不同页面
             if (ex instanceof BusinessException) {
                 request.setAttribute("page_title", "业务异常页");
