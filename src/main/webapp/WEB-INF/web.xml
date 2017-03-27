@@ -15,6 +15,7 @@
             classpath:spring/spring-base.xml,
             classpath:spring/spring-dao.xml,
             classpath:spring/spring-task.xml,
+            classpath:spring/spring-shiro.xml,
             classpath:spring/spring-ws.xml
         </param-value>
     </context-param>
@@ -131,6 +132,17 @@
         <url-pattern>*.woff2</url-pattern>
     </servlet-mapping>
     <!-- 解决bootstrap glyphicon图标不显示问题 end-->
+
+    <!-- shiro start -->
+    <filter>
+        <filter-name>shiro</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiro</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- shiro end -->
 
     <!-- cxf start -->
     <servlet>
